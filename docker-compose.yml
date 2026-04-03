@@ -1,0 +1,32 @@
+services:
+  # MongoDB
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./mongo-keyfile:/etc/mongo-keyfile:ro
+    command:
+      [
+        "mongod",
+        "--replSet", "rs0",
+        "--keyFile", "/etc/mongo-keyfile",
+        "--bind_ip_all"
+      ]
+    networks:
+      - mongodb_network
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  mongodb_network:
+    driver: bridge
