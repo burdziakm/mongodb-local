@@ -9,5 +9,5 @@ docker compose up -d
 
 ## Connection string:
 ```text
-mongodb://local_user:local_pass@localhost:27017/test?authSource=test&directConnection=true
+mongodb://local_user:local_pass@localhost:27017/dev?directConnection=true
 ```

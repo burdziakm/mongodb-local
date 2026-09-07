@@ -5,7 +5,7 @@ print("### MONGO-INIT.JS: STARTING DATABASE INITIALIZATION ###");
 print("################################################################");
 
 // 1. Database setup
-var dbName = "test";
+var dbName = "dev";
 var db = db.getSiblingDB(dbName);
 print("### Using database: " + dbName);
 
